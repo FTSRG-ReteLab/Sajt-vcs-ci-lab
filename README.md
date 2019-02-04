@@ -50,9 +50,9 @@ The figure below illustrates this behavior using an example.
 ## Finally 
 
 1. Here, I'm just testing some Markdown syntax.
-1. As an exercise
+1. As an very nice exercise
 1. to write better markdowns.
 
 ```
-Git gud
+Git gud plox
 ```
