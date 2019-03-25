@@ -19,12 +19,12 @@ public class TrainUserImpl implements TrainUser {
 	}
 
 	@Override
-	public getAlarmState(){
+	public boolean getAlarmState(){
 		return alarmState;
 	}
 
 	@Override
-	public setAlarmState(boolean alarmState){
+	public void setAlarmState(boolean alarmState){
 		this.alarmState = alarmState;
 	}
 
