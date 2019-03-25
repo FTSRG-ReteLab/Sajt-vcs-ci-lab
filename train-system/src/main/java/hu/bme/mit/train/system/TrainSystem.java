@@ -27,9 +27,12 @@ public class TrainSystem {
 		return user;
 	}
 
-    while(True){
-        controller.followSpeed()
-        Thread.sleep(1000);
-    }
+	public void startStrain(){
+		while(True){
+			controller.followSpeed()
+			Thread.sleep(1000);
+		}
+	}
+
 
 }
