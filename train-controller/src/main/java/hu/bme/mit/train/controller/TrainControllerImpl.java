@@ -2,7 +2,7 @@ package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
 
-public class TrainControllerImpl implements TrainController {
+public class TrainControllerImpl implements TrainController, Runnable{
 
 	private int step = 0;
 	private int referenceSpeed = 0;
@@ -46,4 +46,8 @@ public class TrainControllerImpl implements TrainController {
 		this.step = joystickPosition;		
 	}
 
+	@Override
+	public void run() {
+		followSpeed();
+	}
 }
