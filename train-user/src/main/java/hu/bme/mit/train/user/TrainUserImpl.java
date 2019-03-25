@@ -2,11 +2,13 @@ package hu.bme.mit.train.user;
 
 import hu.bme.mit.train.interfaces.TrainController;
 import hu.bme.mit.train.interfaces.TrainUser;
+import hu.bme.mit.train.controller.TrainControllerImpl;
 
 public class TrainUserImpl implements TrainUser {
 
 	private TrainController controller;
 	private int joystickPosition;
+	private Thread thr;
 
 	public TrainUserImpl(TrainController controller) {
 		this.controller = controller;
@@ -26,7 +28,8 @@ public class TrainUserImpl implements TrainUser {
 	public void overrideJoystickPosition(int joystickPosition) {
 		this.joystickPosition = joystickPosition;
 		controller.setJoystickPosition(joystickPosition);
-		new Thread((Runnable) controller).run();
+		this.thr = new Thread(new TrainControllerImpl());
+		thr.start();
 	}
 
 }
