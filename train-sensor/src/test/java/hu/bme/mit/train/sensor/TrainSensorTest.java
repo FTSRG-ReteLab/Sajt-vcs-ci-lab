@@ -26,7 +26,7 @@ public class TrainSensorTest {
     @Test
     public void TestLowerBoundofAbsoulteMargin() {
         TrainSensor sensor = new TrainSensorImpl(controller, user);
-        sensor.overrideSpeedLimit(-100);
+        sensor.overrideSpeedLimit(-1);
         verify(user, times(1)).setAlarmState(true);
     }
 
@@ -42,7 +42,7 @@ public class TrainSensorTest {
     public void TestInsideBoundofAbsoulteMargin() {
         TrainSensor sensor = new TrainSensorImpl(controller, user);
         sensor.overrideSpeedLimit(100);
-        verify(user, times(1)).setAlarmState(false);
+        verify(user, times(0)).setAlarmState(true);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TrainSensorTest {
         TrainSensor sensor = new TrainSensorImpl(controller, user);
         when(controller.getReferenceSpeed()).thenReturn(6666);
         sensor.overrideSpeedLimit(6666);
-        verify(user, times(1)).setAlarmState(false);
+        verify(user, times(0)).setAlarmState(true);
 
     }
 }
