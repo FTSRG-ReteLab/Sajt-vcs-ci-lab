@@ -2,11 +2,15 @@ package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
 
-public class TrainControllerImpl implements TrainController, Runnable{
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class TrainControllerImpl implements TrainController{
 
 	private int step = 0;
 	private int referenceSpeed = 0;
 	private int speedLimit = 5;
+	private Timer timer = new Timer();
 
 	@Override
 	public void followSpeed() {
@@ -32,7 +36,12 @@ public class TrainControllerImpl implements TrainController, Runnable{
 	public void setSpeedLimit(int speedLimit) {
 		this.speedLimit = speedLimit;
 		enforceSpeedLimit();
-		
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				followSpeed();
+			}
+		}, 150, 1000);
 	}
 
 	private void enforceSpeedLimit() {
@@ -46,8 +55,5 @@ public class TrainControllerImpl implements TrainController, Runnable{
 		this.step = joystickPosition;		
 	}
 
-	@Override
-	public void run() {
-		followSpeed();
-	}
+
 }
