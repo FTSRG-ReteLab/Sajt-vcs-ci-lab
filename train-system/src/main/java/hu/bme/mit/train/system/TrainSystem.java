@@ -27,7 +27,7 @@ public class TrainSystem {
 		return user;
 	}
 
-	public void startStrain(){
+	public void startTrain(){
 		while(True){
 			controller.followSpeed()
 			Thread.sleep(1000);
