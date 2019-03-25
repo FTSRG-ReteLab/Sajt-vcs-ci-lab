@@ -24,6 +24,22 @@ public class TrainSensorImpl implements TrainSensor {
 	public void overrideSpeedLimit(int speedLimit) {
 		this.speedLimit = speedLimit;
 		controller.setSpeedLimit(speedLimit);
+
+		//Absolute margin: If the new speed limit is under 0, or over 500.
+
+		if(speedLimit > 500 || 0 > speedLimit){
+			user.setAlarmState(true);
+		}
+
+		//2. Relative margin: If the new speed limit is more than 50% slower than the actual reference
+		//speed (e.g., 150 to 50 is an alarming situation, because 50 is more than 50% less than 150).
+		
+		if(speedLimit < controller.getReferenceSpeed()/2. ){
+			user.setAlarmState(true);
+		}
+
+		 
+
 	}
 
 }
